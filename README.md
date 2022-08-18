@@ -11,6 +11,11 @@ The setup is:
 - Use the Gradient CLI to create and run Gradient Notebooks in each runtime+machine combination
 - Within the Notebook, run the other scripts from this repo
 
+## Requirements
+
+ - Gradient subscription that allows the number of Notebooks the script creates
+ - Gradient CLI on own machine
+
 ## To run
 
 On Gradient
