@@ -13,13 +13,20 @@ The setup is:
 
 ## To run
 
+On Gradient
+
+- Create Project and get its ID
+
 On your own machine
 
 - Install the Gradient CLI
-- Copy do_run_testing.sh to your machine
+- Copy `do_run_testing.sh` to your machine [1]
+- Add your project ID in the location indicated
 - Run it, e.g., `chmod 764 do_run_testing.sh; ./do_run_testing.sh`
 
-WARNING: This has the potential to create a lot of Notebooks! The script has a double loop of both runtimes and machines. It's worth viewing it first to get an idea.
+**WARNING**: This has the potential to create a lot of Notebooks! The script has a double loop of both runtimes and machines. It's worth viewing it first to get an idea.
+
+[1] No need to clone repo as rest of repo is cloned to the Notebook and used there
 
 ## Files
 
