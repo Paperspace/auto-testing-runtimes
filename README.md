@@ -15,6 +15,8 @@ The setup is:
 
  - Gradient subscription that allows the number of Notebooks the script creates
  - Gradient CLI on own machine
+ - Gradient Project to create Notebooks
+ - API key set to access that Project
 
 ## To run
 
@@ -25,8 +27,9 @@ On Gradient
 On your own machine
 
 - Install the Gradient CLI
+- Set API key to access your Gradient Project
 - Copy `do_run_testing.sh` to your machine [1]
-- Add your project ID in the location indicated
+- Add your project ID to `do_run_testing.sh` in the location indicated
 - Run it, e.g., `chmod 764 do_run_testing.sh; ./do_run_testing.sh`
 
 **WARNING**: This has the potential to create a lot of Notebooks! The script has a double loop of both runtimes and machines. It's worth viewing it first to get an idea.
