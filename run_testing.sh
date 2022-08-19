@@ -102,16 +102,12 @@ gradient version
 # https://nbconvert.readthedocs.io/en/latest/usage.html
 # https://nbconvert.readthedocs.io/en/latest/install.html
 
-echo Running notebooks for $runtime
-
-if [ "$runtime" = "PyTorch 1.12" ]; then
-
-  echo Running notebooks for $runtime
-  jupyter nbconvert --to notebook --execute quick_start_pytorch.ipynb --allow-errors --output-dir results
-
-fi
-
-echo "Testing is done"
+#if [ "$runtime" = "PyTorch 1.12" ]; then
+#
+#  echo Running notebooks for $runtime
+#  jupyter nbconvert --to notebook --execute quick_start_pytorch.ipynb --allow-errors --output-dir results
+#
+#fi
 
 
 # Improvements
