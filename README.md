@@ -30,9 +30,9 @@ On your own machine
 - Set API key to access your Gradient Project
 - Copy `do_run_testing.sh` to your machine [1]
 - Add your project ID to `do_run_testing.sh` in the location indicated
-- Run it, e.g., `chmod 764 do_run_testing.sh; ./do_run_testing.sh`
+- Run it, e.g., `chmod 764 do_run_testing.sh; ./do_run_testing.sh "PyTorch 1.12"`
 
-**WARNING**: This has the potential to create a lot of Notebooks! The script has a double loop of both runtimes and machines. It's worth viewing it first to get an idea.
+**WARNING**: This has the potential to create a lot of Notebooks! The script is invoked with a given runtime to reduce this, e.g., the example command shown will create N Notebooks for our N different machine types, which is ~ 20.
 
 [1] No need to clone repo as rest of repo is cloned to the Notebook and used there
 
