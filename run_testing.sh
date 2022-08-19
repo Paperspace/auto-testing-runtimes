@@ -102,6 +102,8 @@ gradient version
 # https://nbconvert.readthedocs.io/en/latest/usage.html
 # https://nbconvert.readthedocs.io/en/latest/install.html
 
+echo Running notebooks for $runtime
+
 if [ "$runtime" = "PyTorch 1.12" ]; then
 
   echo Running notebooks for $runtime
