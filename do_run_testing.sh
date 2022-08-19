@@ -80,7 +80,7 @@ if [ "$runtime" = "PyTorch 1.12" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && ./run_testing.sh 2>&1 | tee run_testing.log & chmod 764 run_testing_pt112.sh && ./run_testing_pt112.sh 2>&1 | tee run_testing_pt112.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_pt112.sh && ./run_testing.sh 2>&1 | tee run_testing.log & ./run_testing_pt112.sh 2>&1 | tee run_testing_pt112.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
