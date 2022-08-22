@@ -19,10 +19,9 @@ echo "Testing has started"
 # Global settings
 
 runtime=$1
-resultsdir="auto_testing_results"
 
 cd /notebooks
-mkdir $resultsdir # Assumes there isn't a directory with this name already
+mkdir auto_testing_results # Assumes there isn't a directory with this name already
 
 
 # CLI tests
