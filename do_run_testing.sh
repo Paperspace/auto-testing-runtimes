@@ -57,9 +57,9 @@ base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803"
 # ------------
 
 if [ "$runtime" = "PyTorch 1.12" ]; then
-    
-  machines=("P4000" "P5000")
-  #machines=("P4000", "RTX4000", "RTX5000", "P5000", "P6000", "A4000", "V100", "V100-32G", "A5000", "A6000", "A100", "A100-80G")
+
+  #machines=("P4000" "P5000")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/PyTorch"
   #name="..." # Doesn't parse correctly if placed here, so currently directly in the CLI invocation
@@ -67,7 +67,7 @@ if [ "$runtime" = "PyTorch 1.12" ]; then
   #The --command syntax is tricky: note the single "&" before the JupyterLab part, and all others double "&&"
   #This is backgrounding the subscript invocations so that the jupyter lab can run and the Notebook can finish starting without erroring waiting for the Jupyter server response
   #There might be a better redirect than 2>&1 | tee, but we want to capture stdout and stderr
-  #If gradient notebooks create is same for every runtime can bring out into function
+  #If gradient notebooks create is same for every runtime can bring out into function, but currently it is not
   tag="autotestingpytorch112" # Tags can only contain alphanumeric characters
 
   echo Runtime $runtime
@@ -96,7 +96,7 @@ fi
 if [ "$runtime" = "TensorFlow 2.9.1" ]; then
     
   machines=("P4000" "P5000")
-  #machines=("P4000", "RTX4000", "RTX5000", "P5000", "P6000", "A4000", "V100", "V100-32G", "A5000", "A6000", "A100", "A100-80G")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/TensorFlow"
   tag="autotestingtensorflow291"
@@ -120,17 +120,89 @@ if [ "$runtime" = "TensorFlow 2.9.1" ]; then
 
 fi
 
-# TODO
 
-#Paperspace + Fast.AI
-#DALL-E Mini
-#Transformers+NLP
-#Start from Scratch
-#ClipIt-PixelDraw
-#NVIDIA RAPIDS
-#Hugging Face Optimum on IPU
-#PyTorch on IPU
-#TensorFlow 2 on IPU
+# Paperspace + Fast.AI
+# -------------------
+
+if [ "$runtime" = "Paperspace + Fast.AI" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  workspace="https://github.com/fastai/fastbook.git"
+  tag="autotestingfastai"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $base \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_fastai.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_fastai.sh 2>&1 | tee run_testing_fastai.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
+
+# DALL-E Mini
+# -----------
+
+if [ "$runtime" = "DALL-E Mini" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  workspace="https://github.com/gradient-ai/dalle-mini"
+  tag="autotestingdalle"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $base \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_dalle.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_dalle.sh 2>&1 | tee run_testing_dalle.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
+
+# Transformers+NLP
+# ----------------
+
+# Start from Scratch
+# ------------------
+
+# ClipIt-PixelDraw
+# ----------------
+
+# NVIDIA RAPIDS
+# -------------
+
+# Hugging Face Optimum on IPU
+# ---------------------------
+
+# PyTorch on IPU
+# --------------
+
+# TensorFlow 2 on IPU
+# -------------------
 
 
 # Improvements
