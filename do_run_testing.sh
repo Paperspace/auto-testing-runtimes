@@ -42,10 +42,10 @@ projectId="p3lkwjx67pw"
 
 # Current runtimes
 
-# Ours: PyTorch 1.12, TensorFlow 2.9.1, Paperspace + Fast.AI, DALL-E Mini, Transformers+NLP, Start from Scratch, ClipIt-PixelDraw
+# Ours: PyTorch 1.12, TensorFlow 2.9.1, Paperspace + Fast.AI, DALL-E Mini, Transformers + NLP, Start from Scratch, ClipIt-PixelDraw
 # Partner: NVIDIA RAPIDS, Hugging Face Optimum on IPU, PyTorch on IPU, TensorFlow 2 on IPU
 
-# Total combinations <= 32*11 = 354
+# Total combinations <= 32*11 = 352
 
 # Global settings
 
@@ -183,17 +183,133 @@ if [ "$runtime" = "DALL-E Mini" ]; then
 fi
 
 
-# Transformers+NLP
-# ----------------
+# Transformers + NLP
+# ------------------
+
+if [ "$runtime" = "Transformers + NLP" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  workspace="https://github.com/huggingface/transformers.git"
+  tag="autotestingtnlp"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $base \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_tnlp.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_tnlp.sh 2>&1 | tee run_testing_tnlp.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
 
 # Start from Scratch
 # ------------------
 
+# This one has no workspace and no .ipynb to run
+# Tests the base container directly
+
+if [ "$runtime" = "Start from Scratch" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  tag="autotestingscratch"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $base \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && ./run_testing.sh 2>&1 | tee run_testing.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --tag $tag
+
+  done
+
+fi
+
+
 # ClipIt-PixelDraw
 # ----------------
 
+if [ "$runtime" = "ClipIt-PixelDraw" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  workspace="https://github.com/gradient-ai/ClipIt-PixelDraw"
+  tag="autotestingclipit"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $base \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_clipit.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_clipit.sh 2>&1 | tee run_testing_clipit.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
+
 # NVIDIA RAPIDS
 # -------------
+
+# Partner runtime: not using our base image
+
+if [ "$runtime" = "NVIDIA RAPIDS" ]; then
+    
+  machines=("P4000" "P5000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+
+  container="rapidsai/rapidsai:22.06-cuda11.0-runtime-ubuntu18.04-py3.8"
+  workspace="https://github.com/gradient-ai/RAPIDS.git"
+  tag="autotestingrapids"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $container \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_rapids.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_rapids.sh 2>&1 | tee run_testing_rapids.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
 
 # Hugging Face Optimum on IPU
 # ---------------------------
