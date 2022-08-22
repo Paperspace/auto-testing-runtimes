@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### Not yet tested, due to PLA-1582 ###
+
 # Avoid clashing outputs from notebooks with same names
 
 mkdir -p /notebooks/auto_testing_results/get-started/Fine-tuning-BERT

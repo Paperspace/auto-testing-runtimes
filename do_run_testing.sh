@@ -10,7 +10,9 @@
 # Set to ID of own created Gradient Project
 
 #projectId="<Project ID>"
-projectId="p3lkwjx67pw"
+
+#projectId="p3lkwjx67pw" #sampleproject2
+projectId="pn733pgsvz6" #Private workspace (to see IPU)
 # ------------------------------------------
 
 
@@ -314,11 +316,106 @@ fi
 # Hugging Face Optimum on IPU
 # ---------------------------
 
+### Not yet tested, due to PLA-1582 ###
+
+# Partner runtime: not using our base image
+# Only IPU machine is compatible
+# Command is different from our base: add CACHE_DIR=/tmp DATASET_DIR=/graphcore
+
+if [ "$runtime" = "Hugging Face Optimum on IPU" ]; then
+    
+  machines=("Free-IPU-POD16")
+
+  container="graphcore/pytorch-jupyter:2.6.0-ubuntu-20.04-20220804"
+  workspace="https://github.com/gradient-ai/Graphcore-HuggingFace"
+  tag="autotestinghfipu"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $container \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_hfipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_hfipu.sh 2>&1 | tee run_testing_hfipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/graphcore && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
+
 # PyTorch on IPU
 # --------------
 
+### Not yet tested, due to PLA-1582 ###
+
+if [ "$runtime" = "PyTorch on IPU" ]; then
+    
+  machines=("Free-IPU-POD16")
+
+  container="graphcore/pytorch-jupyter:2.6.0-ubuntu-20.04-20220804"
+  workspace="https://github.com/gradient-ai/Graphcore-Pytorch"
+  tag="autotestingptipu"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $container \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_ptipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_ptipu.sh 2>&1 | tee run_testing_ptipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/graphcore && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
+
+
 # TensorFlow 2 on IPU
 # -------------------
+
+### Not yet tested, due to PLA-1582 ###
+
+# Command is different from HF and PT: add CACHE_DIR=/tmp DATASET_DIR=/tmp
+
+if [ "$runtime" = "TensorFlow 2 on IPU" ]; then
+    
+  machines=("Free-IPU-POD16")
+
+  container="graphcore/tensorflow-jupyter:2-amd-2.6.0-ubuntu-20.04-20220804"
+  workspace="https://github.com/gradient-ai/Graphcore-Tensorflow2"
+  tag="autotestingtf2ipu"
+
+  echo Runtime $runtime
+
+  for machine in ${machines[@]}; do
+    
+    echo Machine $machine
+
+    gradient notebooks create \
+      --machineType $machine \
+      --container $container \
+      --projectId $projectId \
+      --name "Auto-testing: $runtime on $machine" \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_tf2ipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_tf2ipu.sh 2>&1 | tee run_testing_tf2ipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/tmp && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --workspace $workspace \
+      --tag $tag
+
+  done
+
+fi
 
 
 # Improvements
