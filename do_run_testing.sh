@@ -9,7 +9,9 @@
 # -----------------------------------------
 # Set to ID of own created Gradient Project
 
-projectId="<Project ID>"
+#projectId="<Project ID>"
+#projectId="p3lkwjx67pw" #sampleproject2
+projectId="pn733pgsvz6" #Private workspace (to see IPU)
 # ------------------------------------------
 
 
@@ -64,7 +66,8 @@ base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803"
 
 if [ "$runtime" = "PyTorch 1.12" ]; then
 
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000")
+  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/PyTorch"
   #name="..." # Doesn't parse correctly if placed here, so currently directly in the CLI invocation
