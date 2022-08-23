@@ -68,8 +68,6 @@ python /notebooks/test-updated-runtimes/run_testing.py
 # Jupyter
 # -------
 
-# TODO: Call notebook with tests, e.g., print(sys.version) checks it's using same Python as shell
-
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
