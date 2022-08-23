@@ -4,14 +4,11 @@
 # It is part of the repo https://github.com/Paperspace/test-updated-runtimes
 #
 # Called by: do_run_testing.sh
-# Calls: ...
+# Calls: run_testing.py, run_testing.ipynb
 #
 # It runs the tests on the Gradient Notebook for the given runtime+machine combination passed in by do_run_testing.sh
-#
-# - CLI
-# - .ipynb notebook content
-#
 # Tests should correspond to the runtimes project page at https://www.notion.so/paperspace/How-to-test-each-runtime-QA-f460aa4513554ae9b5d81ef513044fdf
+# Currently it not quite all of them: there are some things that can be added, e.g., tests specific to multi-GPU
 #
 # Last updated: Aug 22nd 2022
 
@@ -20,14 +17,11 @@ echo "Testing has started"
 # Global settings
 
 runtime=$1
+resultsdir=/notebooks/auto_testing_results
+repodir=/notebooks/test-updated-runtimes
 
-cd /notebooks
-mkdir auto_testing_results # Assumes there isn't a directory with this name already
-
-
-
-### TODO: Fill out any remaining tests from the Notion page on testing ###
-
+mkdir $resultsdir # Assumes there isn't a directory with this name already
+cd $repodir
 
 
 # CLI
@@ -58,11 +52,15 @@ gradient version
 
 nvidia-smi
 
+# Multi-GPU
+
+# TODO: Add this, e.g., nvidia-smi topo matrix: V100 should show NVLink
+
 
 # Python ecosystem
 # ----------------
 
-python /notebooks/test-updated-runtimes/run_testing.py
+python run_testing.py > run_testing_python.log
 
 
 # Jupyter
@@ -71,7 +69,7 @@ python /notebooks/test-updated-runtimes/run_testing.py
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-jupyter nbconvert --to notebook --execute /notebooks/test-updated-runtimes/run_testing.ipynb --allow-errors --output-dir /notebooks/auto_testing_results
+jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
 
 
 # Improvements

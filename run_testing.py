@@ -1,5 +1,8 @@
 # Generic tests for Python
+#
+# Called by run_testing.sh
 
+# Imports should work without error
 import numpy
 import scipy
 import pandas
@@ -26,6 +29,7 @@ import sentence_transformers # sentence-transformers
 import datasets 
 import cv2 # opencv-python
 
+# Should show expected versions
 import sys
 print(sys.version)
 print(sys.executable)
