@@ -9,10 +9,7 @@
 # -----------------------------------------
 # Set to ID of own created Gradient Project
 
-#projectId="<Project ID>"
-
-#projectId="p3lkwjx67pw" #sampleproject2
-projectId="pn733pgsvz6" #Private workspace (to see IPU)
+projectId="<Project ID>"
 # ------------------------------------------
 
 

@@ -62,33 +62,7 @@ nvidia-smi
 # Python ecosystem
 # ----------------
 
-# TODO: Call .py with Python modules, etc.
-
-#import numpy
-#import scipy
-#import pandas
-#import cloudpickle
-#import skimage # scikit-image
-#import sklearn # scikit-learn
-#import matplotlib
-#import ipykernel
-#import ipywidgets
-#import gradient
-#import cython #Cython
-#import tqdm
-#import gdown
-#import xgboost 
-#import PIL #pillow
-#import seaborn
-#import sqlalchemy # SQLALchemy
-#import spacy
-#import nltk
-#import jsonify
-#import boto3
-#import transformers
-#import sentence_transformers # sentence-transformers
-#import datasets 
-#import cv2 # opencv-python
+python run_testing.py
 
 
 # Jupyter
@@ -99,9 +73,7 @@ nvidia-smi
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-#import sys
-#print(sys.version)
-#print(sys.executable)
+jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir /notebooks/auto_testing_results
 
 
 # Improvements
