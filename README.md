@@ -44,7 +44,7 @@ See the comments in the scripts for more details on what each one is doing.
 - `run_testing.sh` = Generic tests applicable to all Notebooks.
 - `run_testing.py` = Same, for Python
 - `run_testing.ipynb` = Same, for Jupyter
-- `run_testing_pt112.sh, etc. = Tests specific to each runtime, i.e., run its `.ipynb` content
+- `run_testing_pt112.sh`, etc. = Tests specific to each runtime, i.e., run its `.ipynb` content
 
 ## Improvements
 
