@@ -54,7 +54,7 @@ nvidia-smi
 
 # Multi-GPU
 
-# TODO: Add this, e.g., nvidia-smi topo matrix: V100 should show NVLink
+# TODO: Add this, e.g., nvidia-smi topo --matrix: V100 should show NVLink
 
 
 # Python ecosystem

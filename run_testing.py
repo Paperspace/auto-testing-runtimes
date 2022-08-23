@@ -33,3 +33,28 @@ import cv2 # opencv-python
 import sys
 print(sys.version)
 print(sys.executable)
+
+# PyTorch on base image
+import torch
+import torchvision
+import torchaudio
+
+torch.__version__
+torchvision.__version__
+torchaudio.__version__
+
+torch.cuda.is_available() # Should print True on GPU machine
+
+torch.cuda.device_count() # E.g., 1 for 1 GPU
+torch.cuda.current_device() # E.g., 0
+torch.cuda.get_device_name() # E.g., 'NVIDIA Quadro P4000'
+
+# TensorFlow on base image
+import tensorflow as tf
+
+# Working with CPU
+# (From https://www.tensorflow.org/install/pip)
+print(tf.reduce_sum(tf.random.normal([1000, 1000])))
+
+# Sees GPU(s)
+tf.config.list_physical_devices('GPU')
