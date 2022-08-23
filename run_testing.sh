@@ -62,7 +62,7 @@ nvidia-smi
 # Python ecosystem
 # ----------------
 
-python run_testing.py
+python /notebooks/test-updated-runtimes/run_testing.py
 
 
 # Jupyter
@@ -73,7 +73,7 @@ python run_testing.py
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir /notebooks/auto_testing_results
+jupyter nbconvert --to notebook --execute /notebooks/test-updated-runtimes/run_testing.ipynb --allow-errors --output-dir /notebooks/auto_testing_results
 
 
 # Improvements
