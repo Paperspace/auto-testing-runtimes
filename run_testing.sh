@@ -1,18 +1,19 @@
 #!/bin/bash
 #
-# This is part of the repo https://github.com/Paperspace/test-updated-runtimes
+# This script runs generic tests applicable to all our runtimes
+# It is part of the repo https://github.com/Paperspace/test-updated-runtimes
 #
 # Called by: do_run_testing.sh
 # Calls: ...
 #
-# Run tests on Notebook for its runtime+machine combination passed in by do_run_testing.sh
+# It runs the tests on the Gradient Notebook for the given runtime+machine combination passed in by do_run_testing.sh
 #
 # - CLI
 # - .ipynb notebook content
 #
 # Tests should correspond to the runtimes project page at https://www.notion.so/paperspace/How-to-test-each-runtime-QA-f460aa4513554ae9b5d81ef513044fdf
 #
-# Last updated: Aug 18th 2022
+# Last updated: Aug 22nd 2022
 
 echo "Testing has started"
 
@@ -24,10 +25,13 @@ cd /notebooks
 mkdir auto_testing_results # Assumes there isn't a directory with this name already
 
 
-# CLI tests
-# ---------
 
-# --- Generic tests ---
+### TODO: Fill out any remaining tests from the Notion page on testing ###
+
+
+
+# CLI
+# ---
 
 # Terminal commands
 
@@ -45,15 +49,18 @@ which python3
 python -c 'import sys; print(sys.version); print(sys.executable)'
 python3 -c 'import sys; print(sys.version); print(sys.executable)'
 
-# Jupyter
+# Gradient CLI
 
-# TODO: Call notebook with tests, e.g., print(sys.version) checks it's using same Python as shell
+which gradient
+gradient version
 
-#import sys
-#print(sys.version)
-#print(sys.executable)
+# GPU
+
+nvidia-smi
+
 
 # Python ecosystem
+# ----------------
 
 # TODO: Call .py with Python modules, etc.
 
@@ -83,30 +90,18 @@ python3 -c 'import sys; print(sys.version); print(sys.executable)'
 #import datasets 
 #import cv2 # opencv-python
 
-# Gradient CLI
 
-which gradient
-gradient version
+# Jupyter
+# -------
 
-# ... TODO: Add rest of tests
+# TODO: Call notebook with tests, e.g., print(sys.version) checks it's using same Python as shell
 
+# Runtime-specific content is called separately by do_run_testing.sh
+# These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-# Run Jupyter .ipynb notebooks
-# ----------------------------
-
-# Each runtime has own content, so use if/then
-
-# The nbconvert form given runs the notebook in the notebook
-# Default output is <name>.nbconvert.ipynb
-# https://nbconvert.readthedocs.io/en/latest/usage.html
-# https://nbconvert.readthedocs.io/en/latest/install.html
-
-#if [ "$runtime" = "PyTorch 1.12" ]; then
-#
-#  echo Running notebooks for $runtime
-#  jupyter nbconvert --to notebook --execute quick_start_pytorch.ipynb --allow-errors --output-dir results
-#
-#fi
+#import sys
+#print(sys.version)
+#print(sys.executable)
 
 
 # Improvements

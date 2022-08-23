@@ -34,7 +34,14 @@ projectId="pn733pgsvz6" #Private workspace (to see IPU)
 # Our base runtime is tested directly via the "Start from Scratch" runtime below, which is the base with no repo
 # Notebooks CLI reference is at https://docs.paperspace.com/gradient/cli/notebooks
 
+# The nbconvert form given to run the .ipynb notebooks in the called subscripts runs the notebook in the notebook
+# This outputs a copy where the cells have been run
+# https://nbconvert.readthedocs.io/en/latest/usage.html
+# https://nbconvert.readthedocs.io/en/latest/install.html
+
 # Current machines
+
+# Below is currently testing GPU: can add multi-GPU, etc.
 
 # CPU: C5, C7
 # GPU: P4000, RTX4000, RTX5000, P5000, P6000, A4000, V100, V100-32G, A5000, A6000, A100, A100-80G
@@ -60,7 +67,6 @@ base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803"
 
 if [ "$runtime" = "PyTorch 1.12" ]; then
 
-  #machines=("P4000" "P5000")
   machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/PyTorch"
@@ -97,8 +103,7 @@ fi
 
 if [ "$runtime" = "TensorFlow 2.9.1" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/TensorFlow"
   tag="autotestingtensorflow291"
@@ -128,8 +133,7 @@ fi
 
 if [ "$runtime" = "Paperspace + Fast.AI" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/fastai/fastbook.git"
   tag="autotestingfastai"
@@ -159,8 +163,7 @@ fi
 
 if [ "$runtime" = "DALL-E Mini" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/dalle-mini"
   tag="autotestingdalle"
@@ -190,8 +193,7 @@ fi
 
 if [ "$runtime" = "Transformers + NLP" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/huggingface/transformers.git"
   tag="autotestingtnlp"
@@ -224,8 +226,7 @@ fi
 
 if [ "$runtime" = "Start from Scratch" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   tag="autotestingscratch"
 
@@ -253,8 +254,7 @@ fi
 
 if [ "$runtime" = "ClipIt-PixelDraw" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   workspace="https://github.com/gradient-ai/ClipIt-PixelDraw"
   tag="autotestingclipit"
@@ -286,8 +286,7 @@ fi
 
 if [ "$runtime" = "NVIDIA RAPIDS" ]; then
     
-  machines=("P4000" "P5000")
-  #machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
   container="rapidsai/rapidsai:22.06-cuda11.0-runtime-ubuntu18.04-py3.8"
   workspace="https://github.com/gradient-ai/RAPIDS.git"
