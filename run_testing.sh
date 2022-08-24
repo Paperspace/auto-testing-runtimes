@@ -75,8 +75,7 @@ printf "\n---\nManual pages ...\n---\n\n"
 # Python ecosystem
 # ----------------
 
-printf "\n---\nEtc. ...\n---\n\n"
-echo "Python ecosystem ..."
+printf "\n---\nPython ecosystem ...\n---\n\n"
 
 python run_testing.py > $resultsdir/run_testing_python.log
 
@@ -87,7 +86,7 @@ python run_testing.py > $resultsdir/run_testing_python.log
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-echo "Jupyter ..."
+printf "\n---\nJupyter ...\n---\n\n"
 
 jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
 
