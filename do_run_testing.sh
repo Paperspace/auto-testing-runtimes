@@ -3,13 +3,13 @@
 # See repo for how to use this script:
 # https://github.com/Paperspace/test-updated-runtimes
 #
-# Last updated: Aug 22nd 2022
+# Last updated: Aug 23rd 2022
 
 
 # -----------------------------------------
 # Set to ID of own created Gradient Project
 
-projectId="<Project ID>"
+#projectId="<Project ID>"
 # ------------------------------------------
 
 
@@ -86,7 +86,18 @@ if [ "$runtime" = "PyTorch 1.12" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_pt112.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_pt112.sh 2>&1 | tee run_testing_pt112.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_pt112.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_pt112.sh 2>&1 | tee auto_testing_results/run_testing_pt112.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -116,10 +127,21 @@ if [ "$runtime" = "TensorFlow 2.9.1" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_tf29.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_tf29.sh 2>&1 | tee run_testing_tf29.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_tf29.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_tf29.sh 2>&1 | tee auto_testing_results/run_testing_tf29.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
-
+    
   done
 
 fi
@@ -146,10 +168,21 @@ if [ "$runtime" = "Paperspace + Fast.AI" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_fastai.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_fastai.sh 2>&1 | tee run_testing_fastai.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_fastai.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_fastai.sh 2>&1 | tee auto_testing_results/run_testing_fastai.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
-
+    
   done
 
 fi
@@ -176,7 +209,18 @@ if [ "$runtime" = "DALL-E Mini" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_dalle.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_dalle.sh 2>&1 | tee run_testing_dalle.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_dalle.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_dalle.sh 2>&1 | tee auto_testing_results/run_testing_dalle.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -206,7 +250,18 @@ if [ "$runtime" = "Transformers + NLP" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_tnlp.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_tnlp.sh 2>&1 | tee run_testing_tnlp.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_tnlp.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_tnlp.sh 2>&1 | tee auto_testing_results/run_testing_tnlp.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -238,7 +293,16 @@ if [ "$runtime" = "Start from Scratch" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && ./run_testing.sh 2>&1 | tee run_testing.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --tag $tag
 
   done
@@ -267,7 +331,18 @@ if [ "$runtime" = "ClipIt-PixelDraw" ]; then
       --container $base \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_clipit.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_clipit.sh 2>&1 | tee run_testing_clipit.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_clipit.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_clipit.sh 2>&1 | tee auto_testing_results/run_testing_clipit.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -300,7 +375,17 @@ if [ "$runtime" = "NVIDIA RAPIDS" ]; then
       --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_rapids.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_rapids.sh 2>&1 | tee run_testing_rapids.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_rapids.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_rapids.sh 2>&1 | tee auto_testing_results/run_testing_rapids.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -337,7 +422,20 @@ if [ "$runtime" = "Hugging Face Optimum on IPU" ]; then
       --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_hfipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_hfipu.sh 2>&1 | tee run_testing_hfipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/graphcore && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_hfipu.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_hfipu.sh 2>&1 | tee auto_testing_results/run_testing_hfipu.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 CACHE_DIR=/tmp && \
+		 DATASET_DIR=/graphcore && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -370,7 +468,20 @@ if [ "$runtime" = "PyTorch on IPU" ]; then
       --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_ptipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_ptipu.sh 2>&1 | tee run_testing_ptipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/graphcore && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_ptipu.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_ptipu.sh 2>&1 | tee auto_testing_results/run_testing_ptipu.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 CACHE_DIR=/tmp && \
+		 DATASET_DIR=/graphcore && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
@@ -405,7 +516,20 @@ if [ "$runtime" = "TensorFlow 2 on IPU" ]; then
       --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
-      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && cd test-updated-runtimes && chmod 764 run_testing.sh && chmod 764 run_testing_tf2ipu.sh && ./run_testing.sh 2>&1 | tee run_testing.log && ./run_testing_tf2ipu.sh 2>&1 | tee run_testing_tf2ipu.log & echo "And now JupyterLab" && PIP_DISABLE_PIP_VERSION_CHECK=1 && CACHE_DIR=/tmp && DATASET_DIR=/tmp && jupyter lab --allow-root --ip=0.0.0.0 --no-browser --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' --ServerApp.allow_credentials=True' \
+      --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
+      		 cd test-updated-runtimes && \
+		 chmod 764 run_testing.sh && \
+		 chmod 764 specific/run_testing_tf2ipu.sh && \
+		 ./run_testing.sh 2>&1 | tee auto_testing_results/run_testing.log && \
+		 ./specific/run_testing_tf2ipu.sh 2>&1 | tee auto_testing_results/run_testing_tf2ipu.log & \
+		 echo "And now JupyterLab" && \
+		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+		 CACHE_DIR=/tmp && \
+		 DATASET_DIR=/tmp && \
+		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin='*' \
+		 --ServerApp.allow_credentials=True' \
       --workspace $workspace \
       --tag $tag
 
