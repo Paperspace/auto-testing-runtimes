@@ -17,8 +17,8 @@ echo "Testing has started"
 # Global settings
 
 runtime=$1
-resultsdir=/notebooks/auto_testing_results
 repodir=/notebooks/test-updated-runtimes
+resultsdir=$repodir/auto_testing_results
 
 #mkdir $resultsdir # Assumes there isn't a directory with this name already
 cd $repodir
