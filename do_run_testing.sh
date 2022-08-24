@@ -3,7 +3,7 @@
 # See repo for how to use this script:
 # https://github.com/Paperspace/test-updated-runtimes
 #
-# Last updated: Aug 23rd 2022
+# Last updated: Aug 24th 2022
 
 
 # -----------------------------------------
@@ -150,6 +150,8 @@ fi
 # Paperspace + Fast.AI
 # -------------------
 
+# Command is run.sh rather than jupyter lab
+
 if [ "$runtime" = "Paperspace + Fast.AI" ]; then
     
   machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
@@ -176,10 +178,7 @@ if [ "$runtime" = "Paperspace + Fast.AI" ]; then
 		 ./specific/run_testing_fastai.sh 2>&1 | tee auto_testing_results/run_testing_fastai.log & \
 		 echo "And now JupyterLab" && \
 		 PIP_DISABLE_PIP_VERSION_CHECK=1 && \
-		 jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
-		 --ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
-		 --ServerApp.allow_remote_access=True --ServerApp.allow_origin="*" \
-		 --ServerApp.allow_credentials=True' \
+		 /run.sh' \
       --workspace $workspace \
       --tag $tag
     
