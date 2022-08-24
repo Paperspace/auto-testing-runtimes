@@ -10,9 +10,9 @@
 # Tests should correspond to the runtimes project page at https://www.notion.so/paperspace/How-to-test-each-runtime-QA-f460aa4513554ae9b5d81ef513044fdf
 # Currently it not quite all of them: there are some things that can be added, e.g., tests specific to multi-GPU
 #
-# Last updated: Aug 22nd 2022
+# Last updated: Aug 24th 2022
 
-echo "Testing has started"
+echo "Running generic runtime testing ..."
 
 # Global settings
 
@@ -29,6 +29,8 @@ cd $repodir
 
 # Terminal commands
 
+echo "Terminal commands ..."
+
 commands=( aws cmake curl cython dialog emacs git joe jq man nano ping rsync ssh sudo unrar zip unzip vi wget )
 
 for cmd in ${commands[@]}; do
@@ -36,6 +38,8 @@ for cmd in ${commands[@]}; do
 done
 
 # Python
+
+echo "Python ..."
 
 which python
 which python3
@@ -45,10 +49,14 @@ python3 -c 'import sys; print(sys.version); print(sys.executable)'
 
 # Gradient CLI
 
+echo "Gradient CLI ..."
+
 which gradient
 gradient version
 
 # GPU
+
+echo "GPU ..."
 
 nvidia-smi
 
@@ -56,9 +64,18 @@ nvidia-smi
 
 # TODO: Add this, e.g., nvidia-smi topo --matrix: V100 should show NVLink
 
+# Manual pages
+
+echo "Manual pages ..."
+
+#man man
+#man ls
+
 
 # Python ecosystem
 # ----------------
+
+echo "Python ecosystem ..."
 
 python run_testing.py > $resultsdir/run_testing_python.log
 
@@ -69,7 +86,11 @@ python run_testing.py > $resultsdir/run_testing_python.log
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
+echo "Jupyter ..."
+
 jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
+
+echo "Generic testing is done"
 
 
 # Improvements
