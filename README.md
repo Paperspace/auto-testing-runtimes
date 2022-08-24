@@ -1,6 +1,6 @@
 # Auto-testing Gradient Runtimes
 
-Last updated: Aug 22nd 2022
+Last updated: Aug 23rd 2022
 
 The combination of ~10 Gradient runtimes and ~10 machine types gives 100+ combinations of runtime+machine to test, any of which could fail due to particular runtime content and GPUs being incompatible, or becoming so due to some update.
 
@@ -44,7 +44,7 @@ See the comments in the scripts for more details on what each one is doing.
 - `run_testing.sh` = Generic tests applicable to all Notebooks.
 - `run_testing.py` = Same, for Python
 - `run_testing.ipynb` = Same, for Jupyter
-- `run_testing_pt112.sh`, etc. = Tests specific to each runtime, i.e., run its `.ipynb` content
+- `specific/run_testing_pt112.sh`, etc. = Tests specific to each runtime, i.e., run its `.ipynb` content
 
 ## Improvements
 
