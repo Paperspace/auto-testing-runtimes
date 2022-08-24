@@ -20,7 +20,7 @@ runtime=$1
 resultsdir=/notebooks/auto_testing_results
 repodir=/notebooks/test-updated-runtimes
 
-mkdir $resultsdir # Assumes there isn't a directory with this name already
+#mkdir $resultsdir # Assumes there isn't a directory with this name already
 cd $repodir
 
 
@@ -60,7 +60,7 @@ nvidia-smi
 # Python ecosystem
 # ----------------
 
-python run_testing.py > run_testing_python.log
+python run_testing.py > $resultsdir/run_testing_python.log
 
 
 # Jupyter
