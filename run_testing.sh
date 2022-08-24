@@ -12,7 +12,7 @@
 #
 # Last updated: Aug 24th 2022
 
-printf "\n***\nRunning generic runtime testing ...\n***\n\n"
+printf "***\nRunning generic runtime testing\n***\n"
 
 # Global settings
 
@@ -29,7 +29,7 @@ cd $repodir
 
 # Terminal commands
 
-printf "\n---\nTerminal commands ...\n---\n\n"
+printf "\n---\nTerminal commands\n---\n\n"
 
 commands=( aws cmake curl cython dialog emacs git joe jq man nano ping rsync ssh sudo unrar zip unzip vi wget )
 
@@ -39,7 +39,7 @@ done
 
 # Python
 
-printf "\n---\nPython ...\n---\n\n"
+printf "\n---\nPython\n---\n\n"
 
 which python
 which python3
@@ -49,14 +49,14 @@ python3 -c 'import sys; print(sys.version); print(sys.executable)'
 
 # Gradient CLI
 
-printf "\n---\nGradient CLI ...\n---\n\n"
+printf "\n---\nGradient CLI\n---\n\n"
 
 which gradient
 gradient version
 
 # GPU
 
-printf "\n---\nGPU ...\n---\n\n"
+printf "\n---\nGPU\n---\n\n"
 
 nvidia-smi
 
@@ -66,7 +66,7 @@ nvidia-smi
 
 # Manual pages
 
-printf "\n---\nManual pages ...\n---\n\n"
+printf "\n---\nManual pages\n---\n\n"
 
 #man man
 #man ls
@@ -75,7 +75,7 @@ printf "\n---\nManual pages ...\n---\n\n"
 # Python ecosystem
 # ----------------
 
-printf "\n---\nPython ecosystem ...\n---\n\n"
+printf "\n---\nPython ecosystem\n---\n\n"
 
 python run_testing.py > $resultsdir/run_testing_python.log
 
@@ -86,11 +86,11 @@ python run_testing.py > $resultsdir/run_testing_python.log
 # Runtime-specific content is called separately by do_run_testing.sh
 # These are generic tests, e.g., is the notebook using the same Python as the terminal
 
-printf "\n---\nJupyter ...\n---\n\n"
+printf "\n---\nJupyter\n---\n\n"
 
 jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
 
-printf "\n***\nGeneric testing is done ...\n***\n\n"
+printf "\n***\nGeneric runtime testing is done\n***\n"
 
 
 # Improvements
