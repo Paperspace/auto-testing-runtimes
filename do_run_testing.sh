@@ -9,7 +9,7 @@
 # -----------------------------------------
 # Set to ID of own created Gradient Project
 
-#projectId="<Project ID>"
+projectId="<Project ID>"
 # ------------------------------------------
 
 
@@ -151,11 +151,13 @@ fi
 # -------------------
 
 # Command is run.sh rather than jupyter lab
+# Container is not base
 
 if [ "$runtime" = "Paperspace + Fast.AI" ]; then
     
   machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
+  container="paperspace/fastai:2.0-fastbook-2022-06-29"
   workspace="https://github.com/fastai/fastbook.git"
   tag="autotestingfastai"
 
@@ -167,7 +169,7 @@ if [ "$runtime" = "Paperspace + Fast.AI" ]; then
 
     gradient notebooks create \
       --machineType $machine \
-      --container $base \
+      --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
       --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
@@ -312,10 +314,13 @@ fi
 # ClipIt-PixelDraw
 # ----------------
 
+# Container is not base
+
 if [ "$runtime" = "ClipIt-PixelDraw" ]; then
     
   machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
 
+  container="paperspace/clip-pixeldraw:jupyter"
   workspace="https://github.com/gradient-ai/ClipIt-PixelDraw"
   tag="autotestingclipit"
 
@@ -327,7 +332,7 @@ if [ "$runtime" = "ClipIt-PixelDraw" ]; then
 
     gradient notebooks create \
       --machineType $machine \
-      --container $base \
+      --container $container \
       --projectId $projectId \
       --name "Auto-testing: $runtime on $machine" \
       --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
