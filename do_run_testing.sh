@@ -3,13 +3,13 @@
 # See repo for how to use this script:
 # https://github.com/Paperspace/test-updated-runtimes
 #
-# Last updated: Aug 24th 2022
+# Last updated: Aug 30th 2022
 
 
 # -----------------------------------------
 # Set to ID of own created Gradient Project
 
-projectId="<Project ID>"
+#projectId="<Project ID>"
 # ------------------------------------------
 
 
@@ -401,17 +401,17 @@ fi
 # Hugging Face Optimum on IPU
 # ---------------------------
 
-### Not yet tested, due to PLA-1582 ###
-
 # Partner runtime: not using our base image
 # Only IPU machine is compatible
 # Command is different from our base: add CACHE_DIR=/tmp DATASET_DIR=/graphcore
+# Specify the cluster otherwise fails (PLA-1582)
 
 if [ "$runtime" = "Hugging Face Optimum on IPU" ]; then
     
   machines=("Free-IPU-POD16")
 
   container="graphcore/pytorch-jupyter:2.6.0-ubuntu-20.04-20220804"
+  clusterId="clcpuovbp"
   workspace="https://github.com/gradient-ai/Graphcore-HuggingFace"
   tag="autotestinghfipu"
 
@@ -425,6 +425,7 @@ if [ "$runtime" = "Hugging Face Optimum on IPU" ]; then
       --machineType $machine \
       --container $container \
       --projectId $projectId \
+      --clusterId $clusterId \
       --name "Auto-testing: $runtime on $machine" \
       --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
       		 cd test-updated-runtimes && \
@@ -451,13 +452,14 @@ fi
 # PyTorch on IPU
 # --------------
 
-### Not yet tested, due to PLA-1582 ###
+# Specify the cluster otherwise fails (PLA-1582)
 
 if [ "$runtime" = "PyTorch on IPU" ]; then
     
   machines=("Free-IPU-POD16")
 
   container="graphcore/pytorch-jupyter:2.6.0-ubuntu-20.04-20220804"
+  clusterId="clcpuovbp"
   workspace="https://github.com/gradient-ai/Graphcore-Pytorch"
   tag="autotestingptipu"
 
@@ -471,6 +473,7 @@ if [ "$runtime" = "PyTorch on IPU" ]; then
       --machineType $machine \
       --container $container \
       --projectId $projectId \
+      --clusterId $clusterId \
       --name "Auto-testing: $runtime on $machine" \
       --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
       		 cd test-updated-runtimes && \
@@ -497,15 +500,15 @@ fi
 # TensorFlow 2 on IPU
 # -------------------
 
-### Not yet tested, due to PLA-1582 ###
-
 # Command is different from HF and PT: add CACHE_DIR=/tmp DATASET_DIR=/tmp
+# Specify the cluster otherwise fails (PLA-1582)
 
 if [ "$runtime" = "TensorFlow 2 on IPU" ]; then
     
   machines=("Free-IPU-POD16")
 
   container="graphcore/tensorflow-jupyter:2-amd-2.6.0-ubuntu-20.04-20220804"
+  clusterId="clcpuovbp"
   workspace="https://github.com/gradient-ai/Graphcore-Tensorflow2"
   tag="autotestingtf2ipu"
 
@@ -519,6 +522,7 @@ if [ "$runtime" = "TensorFlow 2 on IPU" ]; then
       --machineType $machine \
       --container $container \
       --projectId $projectId \
+      --clusterId $clusterId \
       --name "Auto-testing: $runtime on $machine" \
       --command 'git clone https://github.com/Paperspace/test-updated-runtimes && \
       		 cd test-updated-runtimes && \
