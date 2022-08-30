@@ -14,7 +14,7 @@ mkdir -p $resultsdir/tutorial-notebooks/tensorboard
 
 # Curated content
 
-jupyter nbconvert --to notebook --execute /notebooks/get-started/run_cluster_gcn_notebook.ipynb.ipynb --allow-errors --output-dir $resultsdir/get-started/run_cluster_gcn_notebook
+jupyter nbconvert --to notebook --execute /notebooks/get-started/run_cluster_gcn_notebook.ipynb --allow-errors --output-dir $resultsdir/get-started/run_cluster_gcn_notebook
 
 # Can try out the not-yet-curated content also
 # observing_tensors/ has no .ipynb
