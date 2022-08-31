@@ -72,5 +72,6 @@ The aim here is to make testing the runtimes+machines tractable. There are likel
 - Notebooks that require the user to take some manual action first such as mounting a Gradient Dataset won't work, but these are minority.
 - Nice-to-have would be to create one Notebook for each runtime and run it for all machineS. This would avoid creating a large number of Notebooks. But using gradient notebooks create, stop, and start same ID with different machine still creates a new one each time, leaving just as many.
 - `gradient notebooks metrics get` would add information about GPU usage.
+- Papermill & Forego might improve the setting up of commands to run when the Notebook is started.
 
 These improvements can be moved to issues (label as enhancements) for this repo.
