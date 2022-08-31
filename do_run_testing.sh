@@ -160,7 +160,7 @@ run_on_machines () {
 
 if [ "$runtime" = "PyTorch 1.12" ]; then
 
-  machines=("P4000") # "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/gradient-ai/PyTorch"
   shortname="pt112"
