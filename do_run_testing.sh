@@ -279,7 +279,7 @@ fi
 
 
 # 2.7: ClipIt-PixelDraw
-# ----------------
+# ---------------------
 
 # Container is not base
 
