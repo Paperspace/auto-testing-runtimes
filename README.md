@@ -62,16 +62,4 @@ The above is enough to be able to run everything. The scripts have comments in t
 
 ## Improvements
 
-The aim here is to make testing the runtimes+machines tractable. There are likely better ways to software-engineer the testing here over time.
-
-- Better framework: CLI YAML options files, Workflows, or Python may improve upon the master-shell-script setup here.
-- Notebooks as `.py`: Currently this uses `nbconvert` to run each `.ipynb` on the Gradient Notebook as a notebook, meaning that the output has to be manually inspected in the notebook view if there are errors. nbconvert can convert `.ipynb`s into `.py`s which then gives us the usual ability to log a `.py`'s output. But this introduces a conversion step that may have errors a user wouldn't see when running the `.ipynb`, and we want to ensure that running our `.ipynb`s is working for users. Also some code in `.ipynb` doesn't work in `.py`, e.g., line and cell magics. We could require our recommended content to be convertible to `.py`, but this might be restrictive.
-- Output to non-Notebook location: Completed `.ipynb` notebooks could be output to an external location or other format such as PDF (PDF requires a lengthy TeXLive install), and the created Notebook then stopped or deleted rather than left open. `nbconvert` can also pick up whether or not a notebook errored (although the errors themselves would still need to be looked at).
-- More commands and tests: Likely there are more things that can be tested, so additions to the scripts here can be ongoing.
-- The runtimes and machines settings are hardwired in the `do_run_testing.sh` script. It is probably possible to use separate configuration files, or the CLI's `--optionsFile`.
-- Notebooks that require the user to take some manual action first such as mounting a Gradient Dataset won't work, but these are minority.
-- Nice-to-have would be to create one Notebook for each runtime and run it for all machineS. This would avoid creating a large number of Notebooks. But using gradient notebooks create, stop, and start same ID with different machine still creates a new one each time, leaving just as many.
-- `gradient notebooks metrics get` would add information about GPU usage.
-- Papermill & Forego might improve the setting up of commands to run when the Notebook is started.
-
-These improvements can be moved to issues (label as enhancements) for this repo.
+See improvements.md
