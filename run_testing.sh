@@ -20,7 +20,6 @@ runtime=$1
 repodir=/notebooks/test-updated-runtimes
 resultsdir=$repodir/auto_testing_results
 
-#mkdir $resultsdir # Assumes there isn't a directory with this name already
 cd $repodir
 
 
@@ -93,20 +92,3 @@ printf "\n---\nJupyter\n---\n\n"
 jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
 
 printf "\n***\nGeneric runtime testing is done\n***"
-
-
-# Improvements
-# ************
-
-# Include notebook rerun on test and rerun+kernel restart
-
-# PDF output also works and could be saved to a remote location without the need to access the Notebook to inspect the results
-# But it requires a slow TeXLive install, and our Notebooks can be viewed offline
-
-#apt-get update
-#apt-get install -y pandoc
-#apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic
-#jupyter nbconvert --to pdf --execute quick_start_pytorch.ipynb --allow-errors --output-dir pdf
-
-# jupytext converts it to script then can see output
-# Papermill has execute notebook with params to notebook
