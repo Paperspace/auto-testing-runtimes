@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Aug 31st 2022
+# Last updated: Sep 01st 2022
 
 
 # What this script does
@@ -49,7 +49,7 @@
 # Current runtimes
 # All of these have settings below in section 2
 
-# Ours: PyTorch 1.12, TensorFlow 2.9.1, Paperspace + Fast.AI, DALL-E Mini, Transformers + NLP, Start from Scratch, ClipIt-PixelDraw
+# Ours: PyTorch 1.12, TensorFlow 2.9.1, Paperspace + Fast.AI, DALL-E Mini, Transformers + NLP, Start from Scratch, ClipIt-PixelDraw, Stable Diffusion
 # Partner: NVIDIA RAPIDS, Hugging Face Optimum on IPU, PyTorch on IPU, TensorFlow 2 on IPU
 
 # Total combinations <= 32*11 = 352
