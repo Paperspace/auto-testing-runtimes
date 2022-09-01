@@ -196,7 +196,7 @@ fi
 
 
 # 2.3: Paperspace + Fast.AI
-# -------------------
+# -------------------------
 
 # Command is run.sh rather than jupyter lab
 # Container is not base
