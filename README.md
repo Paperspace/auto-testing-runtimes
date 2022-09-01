@@ -1,14 +1,14 @@
 # Auto-testing Gradient Runtimes
 
-Last updated: Aug 31st 2022
+Last updated: Sep 01st 2022
 
-The combination of ~10 Gradient runtimes and ~10 machine types gives 100+ combinations of runtime+machine to test, any of which could fail due to particular runtime content and GPUs being incompatible, or becoming so due to some update.
+The combination of 10+ Gradient runtimes and 10+ machine types gives 100+ combinations of runtime+machine to test, any of which could fail due to particular runtime content and GPUs being incompatible, or becoming so due to some update.
 
 Testing 100+ combinations manually every time something is updated is intractable, so this repo automates the testing.
 
 The setup is:
 
-- Use the Gradient CLI to create and run Gradient Notebooks in each valid runtime+machine combination
+- Use the Gradient CLI on your machine to create and run Gradient Notebooks in each valid runtime+machine combination
 - Within the Notebook, run the other scripts from this repo
 
 ## Requirements
@@ -46,7 +46,7 @@ The full usage is
 
 where `<clusterId>` and `<workspaceRef>` are options to point to a cluster other than the default and a non-master branch of the runtime's GitHub repo, aka. workspace.
 
-**WARNING**: This has the potential to create a lot of Notebooks! The script is invoked with a given runtime to reduce this, e.g., the example command shown will create N Notebooks for our M different machine types, which might be ~ 12.
+**WARNING**: This has the potential to create a lot of Notebooks! In total for all runtimes it would be up to R*M for R runtimes and M machines, so 10+ * 10+ = 100+. The script is invoked with a given runtime to reduce this, e.g., the example command shown will be R=1 and thus create just M Notebooks (10+ not 100+).
 
 [1] It's not required to clone this repo as the rest of it is cloned to the Notebook and used there
 
