@@ -10,7 +10,7 @@
 # Tests should correspond to the runtimes project page at https://www.notion.so/paperspace/How-to-test-each-runtime-QA-f460aa4513554ae9b5d81ef513044fdf
 # Currently it not quite all of them: there are some things that can be added, e.g., tests specific to multi-GPU
 #
-# Last updated: Aug 24th 2022
+# Last updated: Sep 01st 2022
 
 printf "***\nRunning generic runtime testing\n***\n"
 
@@ -34,6 +34,7 @@ printf "\n---\nTerminal commands\n---\n\n"
 commands=( aws cmake curl cython dialog emacs git joe jq man nano ping rsync ssh sudo unrar zip unzip vi wget )
 
 for cmd in ${commands[@]}; do
+    echo Testing command $cmd ...
     which $cmd
 done
 
@@ -63,13 +64,14 @@ nvidia-smi
 # Multi-GPU
 
 # TODO: Add this, e.g., nvidia-smi topo --matrix: V100 should show NVLink
+# But only works if machine is multi-GPU so need to check for that using truth table
 
 # Manual pages
 
 printf "\n---\nManual pages\n---\n\n"
 
-#man man
-#man ls
+man man
+man ls
 
 
 # Python ecosystem
@@ -90,7 +92,7 @@ printf "\n---\nJupyter\n---\n\n"
 
 jupyter nbconvert --to notebook --execute run_testing.ipynb --allow-errors --output-dir $resultsdir
 
-printf "\n***\nGeneric runtime testing is done\n***\n"
+printf "\n***\nGeneric runtime testing is done\n***"
 
 
 # Improvements
