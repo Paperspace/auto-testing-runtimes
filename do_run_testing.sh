@@ -402,4 +402,18 @@ fi
 # 2.12: Stable Diffusion
 # ----------------------
 
-# Add this when runtime tile is up
+if [ "$runtime" = "Stable Diffusion" ]; then
+
+  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  container=$base
+  workspace="https://github.com/gradient-ai/stable-diffusion"
+  shortname="stable"
+  jupytercmd="PIP_DISABLE_PIP_VERSION_CHECK=1 && \
+	      jupyter lab --allow-root --ip=0.0.0.0 --no-browser \
+		--ServerApp.trust_xheaders=True --ServerApp.disable_check_xsrf=False \
+		--ServerApp.allow_remote_access=True --ServerApp.allow_origin=\"*\" \
+		--ServerApp.allow_credentials=True"
+  
+  run_on_machines
+
+fi
