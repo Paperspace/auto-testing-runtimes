@@ -15,80 +15,120 @@ print('sys.version:', sys.version)
 print('sys.executable:', sys.executable)
 
 # Imports should work without error
+# Use try/except so remainder run if any fail
+# Use importlib so can pass moduke name as string
+# Assumes importlib is importing module same way as regular import
 
+import importlib
+
+def try_import(module):
+    
+    print(module)
+    
+    try:
+        importlib.import_module(module)
+    except:
+        print(module + " not found")
+        
 print('\n' + 'Checking module imports ...' + '\n')
 
-print('numpy')
-import numpy
+try_import('numpy')
+try_import('scipy')
+try_import('pandas')
+try_import('cloudpickle')
+try_import('skimage') # scikit-image
+try_import('sklearn') # scikit-learn
+try_import('matplotlib')
+try_import('ipykernel')
+try_import('ipywidgets')
+try_import('cython') #Cython
+try_import('tqdm')
+try_import('gdown')
+try_import('xgboost') 
+try_import('PIL') #pillow
+try_import('seaborn')
+try_import('sqlalchemy') # SQLALchemy
+try_import('spacy')
+try_import('nltk')
+try_import('jsonify')
+try_import('boto3')
+try_import('transformers')
+try_import('sentence_transformers') # sentence-transformers
+try_import('datasets')
+try_import('cv2') # opencv-python
+try_import('gradient') # Gradient will fail on partner containers that don't have it
 
-print('scipy')
-import scipy
+#print('numpy')
+#import numpy
 
-print('pandas')
-import pandas
+#print('scipy')
+#import scipy
 
-print('cloudpickle')
-import cloudpickle
+#print('pandas')
+#import pandas
 
-print('skimage')
-import skimage # scikit-image
+#print('cloudpickle')
+#import cloudpickle
 
-print('sklearn')
-import sklearn # scikit-learn
+#print('skimage')
+#import skimage # scikit-image
 
-print('matplotlib')
-import matplotlib
+#print('sklearn')
+#import sklearn # scikit-learn
 
-print('ipykernel')
-import ipykernel
+#print('matplotlib')
+#import matplotlib
 
-print('ipywidgets')
-import ipywidgets
+#print('ipykernel')
+#import ipykernel
 
-print('cython')
-import cython #Cython
+#print('ipywidgets')
+#import ipywidgets
 
-print('tqdm')
-import tqdm
+#print('cython')
+#import cython #Cython
 
-print('gdown')
-import gdown
+#print('tqdm')
+#import tqdm
 
-print('xgboost')
-import xgboost 
+#print('gdown')
+#import gdown
 
-print('PIL')
-import PIL #pillow
+#print('xgboost')
+#import xgboost 
 
-print('seaborn')
-import seaborn
+#print('PIL')
+#import PIL #pillow
 
-print('sqlalchemy')
-import sqlalchemy # SQLALchemy
+#print('seaborn')
+#import seaborn
 
-print('spacy')
-import spacy
+#print('sqlalchemy')
+#import sqlalchemy # SQLALchemy
 
-print('nltk')
-import nltk
+#print('spacy')
+#import spacy
 
-print('jsonify')
-import jsonify
+#print('nltk')
+#import nltk
 
-print('boto3')
-import boto3
+#print('jsonify')
+#import jsonify
 
-print('transformers')
-import transformers
+#print('boto3')
+#import boto3
 
-print('sentence_transformers')
-import sentence_transformers # sentence-transformers
+#print('transformers')
+#import transformers
 
-print('datasets')
-import datasets 
+#print('sentence_transformers')
+#import sentence_transformers # sentence-transformers
 
-print('cv2')
-import cv2 # opencv-python
+#print('datasets')
+#import datasets 
 
-print('gradient')
-import gradient # Gradient will fail on partner containers that don't have it
+#print('cv2')
+#import cv2 # opencv-python
+
+#print('gradient')
+#import gradient # Gradient will fail on partner containers that don't have it
