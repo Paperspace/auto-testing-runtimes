@@ -10,7 +10,7 @@
 # Tests should correspond to the runtimes project page at https://www.notion.so/paperspace/How-to-test-each-runtime-QA-f460aa4513554ae9b5d81ef513044fdf
 # Currently it not quite all of them: there are some things that can be added, e.g., tests specific to multi-GPU
 #
-# Last updated: Sep 01st 2022
+# Last updated: Sep 16th 2022
 
 printf "***\nRunning generic runtime testing\n***\n"
 
@@ -65,12 +65,36 @@ nvidia-smi
 # TODO: Add this, e.g., nvidia-smi topo --matrix: V100 should show NVLink
 # But only works if machine is multi-GPU so need to check for that using truth table
 
+# CUDA
+
+# Shows locations of files called "cuda", case-insensitive
+# Might be better formulations of this
+
+printf "\n---\nCUDA\n---\n\n"
+
+find / -type d -iname cuda
+
 # Manual pages
 
-printf "\n---\nManual pages\n---\n\n"
+# Check present for built-ins (man) and POSIX (ls)
+# Truncate output
 
-man man
-man ls
+printf "\n---\nManual pages (truncated)\n---\n\n"
+
+man man | head -50
+printf "...\n\n"
+
+man ls | head -50
+printf "...\n"
+
+# Environment variables
+
+# Filter any not useful
+# Sort alphabetically for easier reading
+
+printf "\n---\nEnvironment variables\n---\n\n"
+
+printenv | sort | grep -v 'LS_COLORS'
 
 
 # Python ecosystem
