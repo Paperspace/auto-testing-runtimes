@@ -2,6 +2,9 @@
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
+# Confirm datasets in shared storage from runtime's run.sh is working
+python -c 'from fastai.vision.all import *; path = untar_data(URLs.PETS); print(path)'
+
 jupyter nbconvert --to notebook --execute /notebooks/01_intro.ipynb          --allow-errors --output-dir $resultsdir
 #jupyter nbconvert --to notebook --execute /notebooks/02_production.ipynb     --allow-errors --output-dir $resultsdir
 #jupyter nbconvert --to notebook --execute /notebooks/03_ethics.ipynb         --allow-errors --output-dir $resultsdir
