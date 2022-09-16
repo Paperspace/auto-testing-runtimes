@@ -2,7 +2,7 @@
 #
 # Called by run_testing.sh
 #
-# Last updated: Sep 01st 2022
+# Last updated: Sep 16th 2022
 
 print('Running generic tests for Python ...' + '\n')
 
@@ -56,4 +56,5 @@ try_import('transformers')
 try_import('sentence_transformers') # sentence-transformers
 try_import('datasets')
 try_import('cv2') # opencv-python
+try_import('jax') # JAX
 try_import('gradient') # Gradient will fail on partner containers that don't have it
