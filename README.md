@@ -1,6 +1,6 @@
 # Auto-testing Gradient Runtimes
 
-Last updated: Sep 01st 2022
+Last updated: Sep 16th 2022
 
 The combination of 10+ Gradient runtimes and 10+ machine types gives 100+ combinations of runtime+machine to test, any of which could fail due to particular runtime content and GPUs being incompatible, or becoming so due to some update.
 
