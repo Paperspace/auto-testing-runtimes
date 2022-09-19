@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Sep 01st 2022
+# Last updated: Sep 19th 2022
 
 
 # What this script does
@@ -60,6 +60,7 @@ base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803" # The runtime b
 autotestingrepo="https://github.com/Paperspace/test-updated-runtimes" # Git repo for auto-testing
 autotestingrepodir="test-updated-runtimes" # Directory created on Notebook by cloning this repo
 resultsdir="auto_testing_results" # Directory for all results of testing
+apifile="$HOME/.paperspace/config.json" # File containing API key (use HOME not ~)
 
 # Get user input arguments
 
@@ -81,6 +82,8 @@ while getopts "c:w:" opt; do
       ;;
   esac
 done
+
+apikey=`cat $apifile | grep apiKey | awk '{print $NF}'`
 
 
 # 1. Function to run machines
@@ -108,7 +111,7 @@ run_on_machines () {
 	      chmod 764 run_testing.sh && \
 	      chmod 764 specific/run_testing_$shortname.sh && \
 	      ./run_testing.sh 2>&1 | tee $resultsdir/run_testing.log && \
-	      ./specific/run_testing_$shortname.sh 2>&1 | tee $resultsdir/run_testing_$shortname.log & \
+	      ./specific/run_testing_$shortname.sh $apikey 2>&1 | tee $resultsdir/run_testing_$shortname.log & \
 	      echo \"And now JupyterLab\" && \
               $jupytercmd'"
     
