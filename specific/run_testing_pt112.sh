@@ -1,7 +1,28 @@
 #!/bin/bash
+#
+# Notebook-specific testing for PyTorch 1.12
+#
+# Last updated: Sep 19th 2022
+
+echo Running Notebook-specific testing for PyTorch 1.12 ...
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
+echo Running quick_start_pytorch.ipynb ...
+
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_pytorch.ipynb --allow-errors --output-dir $resultsdir
 
-echo Testing is done
+echo Getting metrics ...
+
+notebook_id=`hostname`
+starttime=`date -u -v-2M "+%Y-%m-%d %H:%M:%S"`
+endtime=`date -u "+%Y-%m-%d %H:%M:%S"`
+
+gradient notebooks metrics get \
+  --id $notebook_id \
+  --start "$starttime" \
+  --end "$endtime" \
+  --metric gpuUtilization \
+  --metric gpuMemoryUtilization
+
+echo Notebook-specific testing is done
