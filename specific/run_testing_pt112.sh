@@ -14,6 +14,7 @@ jupyter nbconvert --to notebook --execute /notebooks/quick_start_pytorch.ipynb -
 
 echo Getting metrics ...
 
+apikey=$1
 notebook_id=`hostname`
 starttime=`date -d "2 minutes ago" "+%Y-%m-%d %H:%M:%S"`
 endtime=`date "+%Y-%m-%d %H:%M:%S"`
@@ -23,6 +24,7 @@ gradient notebooks metrics get \
   --start "$starttime" \
   --end "$endtime" \
   --metric gpuUtilization \
-  --metric gpuMemoryUtilization
+  --metric gpuMemoryUtilization \
+  --apiKey $apikey
 
 echo Notebook-specific testing is done
