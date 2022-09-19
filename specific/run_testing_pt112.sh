@@ -15,7 +15,7 @@ jupyter nbconvert --to notebook --execute /notebooks/quick_start_pytorch.ipynb -
 echo Getting metrics ...
 
 notebook_id=`hostname`
-startime=`date -d '2 minutes ago' "+%Y-%m-%d %H:%M:%S"`
+starttime=`date -d "2 minutes ago" "+%Y-%m-%d %H:%M:%S"`
 endtime=`date "+%Y-%m-%d %H:%M:%S"`
 
 gradient notebooks metrics get \
