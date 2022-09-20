@@ -8,12 +8,12 @@ printf "Running Notebook-specific testing for TensorFlow 2.9.1 ...\n"
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
-printf "\nRunning notebooks ...\n"
+printf "\nRunning notebooks ...\n\n"
 
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_beginner.ipynb --allow-errors --output-dir $resultsdir
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_advanced.ipynb --allow-errors --output-dir $resultsdir
 
-printf "\nGetting metrics ...\n"
+printf "\nGetting metrics ...\n\n"
 
 # 5 minutes should get both notebooks
 # Better would be to get each one's metrics, but metrics per process is not yet supported

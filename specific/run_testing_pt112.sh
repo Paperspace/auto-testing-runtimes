@@ -8,11 +8,11 @@ printf "Running Notebook-specific testing for PyTorch 1.12 ...\n"
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
-printf "\nRunning quick_start_pytorch.ipynb ...\n"
+printf "\nRunning quick_start_pytorch.ipynb ...\n\n"
 
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_pytorch.ipynb --allow-errors --output-dir $resultsdir
 
-printf "\nGetting metrics ...\n"
+printf "\nGetting metrics ...\n\n"
 
 apikey=$1
 notebook_id=`hostname`
