@@ -1,11 +1,19 @@
 #!/bin/bash
+#
+# Runtime-specific testing for Hugging Face Optimum on IPU
+#
+# Last updated: Sep 20th 2022
 
-### Not yet tested, due to PLA-1582 ###
+printf "Running Runtime-specific testing for Hugging Face Optimum on IPU ...\n"
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
+
+printf "\nRunning notebooks ...\n\n"
 
 jupyter nbconvert --to notebook --execute /notebooks/get-started/walkthrough.ipynb                              --allow-errors --output-dir $resultsdir
 jupyter nbconvert --to notebook --execute /notebooks/notebook-tutorials/introduction_to_optimum_graphcore.ipynb --allow-errors --output-dir $resultsdir
 jupyter nbconvert --to notebook --execute /notebooks/notebook-tutorials/text_classification.ipynb               --allow-errors --output-dir $resultsdir
 
-echo Testing is done
+# IPU metrics are not yet supported
+
+printf "\nRuntime-specific testing is done\n"
