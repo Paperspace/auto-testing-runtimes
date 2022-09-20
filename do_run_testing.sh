@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Sep 19th 2022
+# Last updated: Sep 20th 2022
 
 
 # What this script does
@@ -143,7 +143,10 @@ run_on_machines () {
 	cmdstr=$cmdstr" --workspaceRef \"$workspaceRef\""
     fi
 
-    #echo $cmdstr # Uncomment this if you want to see the gradient notebooks create command used for each Notebook
+    # Uncomment this if you want to see the gradient notebooks create command used for each Notebook
+    # sed filter prevents the API key from being written out
+    
+    # echo $cmdstr | sed s/$apikey/"<API key>"/g
     
     eval $cmdstr # Run the Notebook
 
