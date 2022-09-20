@@ -4,7 +4,7 @@
 #
 # Last updated: Sep 20th 2022
 
-printf "Running Runtime-specific testing for Start from Scratch ...\n"
+printf "Running Runtime-specific testing for Start from Scratch ...\n\n"
 
 echo Start from Scratch currently has no specific testing
 
