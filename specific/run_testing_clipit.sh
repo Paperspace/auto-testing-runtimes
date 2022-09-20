@@ -14,12 +14,14 @@ jupyter nbconvert --to notebook --execute /notebooks/PixelDraw.ipynb --allow-err
 
 printf "\nGetting metrics ...\n\n"
 
+# Install Gradient CLI because runtime's Docker image doesn't have it
+
+pip install gradient
+
 apikey=$1
 notebook_id=`hostname`
 starttime=`date -d "5 minutes ago" "+%Y-%m-%d %H:%M:%S"`
 endtime=`date "+%Y-%m-%d %H:%M:%S"`
-
-pip install gradient # Image doesn't have it
 
 gradient notebooks metrics get \
   --id $notebook_id \

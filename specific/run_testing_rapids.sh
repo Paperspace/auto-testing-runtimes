@@ -24,6 +24,9 @@ jupyter nbconvert --to notebook --execute /notebooks/rapids/xgboost/XGBoost_Demo
 printf "\nGetting metrics ...\n\n"
 
 # Better would be to get each notebook's metrics, but metrics per process is not yet supported
+# Install Gradient CLI because runtime's Docker image doesn't have it
+
+pip install gradient
 
 apikey=$1
 notebook_id=`hostname`
