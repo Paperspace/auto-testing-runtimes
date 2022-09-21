@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 
 # What this script does
@@ -56,11 +56,12 @@
 
 # Global settings
 
-base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803" # The runtime base Docker image
+base="paperspace/gradient-base:pt112-tf29-jax0314-py39-20220803"      # The runtime base Docker image
 autotestingrepo="https://github.com/Paperspace/test-updated-runtimes" # Git repo for auto-testing
-autotestingrepodir="test-updated-runtimes" # Directory created on Notebook by cloning this repo
-resultsdir="auto_testing_results" # Directory for all results of testing
-apifile="$HOME/.paperspace/config.json" # File containing API key (use HOME not ~)
+autotestingrepodir="test-updated-runtimes"                            # Directory created on Notebook by cloning this repo
+resultsdir="auto_testing_results"                                     # Directory for all results of testing
+apifile="$HOME/.paperspace/config.json"                               # File containing API key (use HOME not ~)
+shutdowntime="6"                                                      # Avoid default 1h shutdown on IPUs (integer, no units)
 
 # Get user input arguments
 
@@ -126,6 +127,7 @@ run_on_machines () {
             --projectId \"$projectId\" \
             --name \"$name\" \
             --command $command \
+	    --shutdownTimeout \"$shutdowntime\" \
             --tag \"$tag\""
 
     # Include workspace unless running base image only (e.g., "Start from Scratch" runtime)
