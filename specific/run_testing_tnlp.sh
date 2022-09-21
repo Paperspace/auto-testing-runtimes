@@ -2,7 +2,7 @@
 #
 # Runtime-specific testing for Transformers + NLP
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 printf "Running Runtime-specific testing for Transformers + NLP ...\n"
 
@@ -11,14 +11,17 @@ resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 # These are the 3 .ipynbs in the https://github.com/huggingface/transformers repo
 # mkdirs to avoid the 2 notebooks called demo.ipynb overwriting each other
 
-printf "\nRunning notebooks ...\n\n"
-
 mkdir $resultsdir/movement-pruning
 mkdir $resultsdir/lxmert
 mkdir $resultsdir/visual_bert
 
+printf "\nRunning notebook: examples/research_projects/movement-pruning/Saving_PruneBERT.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/examples/research_projects/movement-pruning/Saving_PruneBERT.ipynb --allow-errors --output-dir $resultsdir/movement-pruning
+
+printf "\nRunning notebook: examples/research_projects/lxmert/demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/examples/research_projects/lxmert/demo.ipynb                       --allow-errors --output-dir $resultsdir/lxmert
+
+printf "\nRunning notebook: examples/research_projects/visual_bert/demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/examples/research_projects/visual_bert/demo.ipynb                  --allow-errors --output-dir $resultsdir/visual_bert
 
 printf "\nGetting metrics ...\n\n"

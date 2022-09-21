@@ -2,15 +2,16 @@
 #
 # Runtime-specific testing for TensorFlow 2.9.1
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 printf "Running Runtime-specific testing for TensorFlow 2.9.1 ...\n"
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
-printf "\nRunning notebooks ...\n\n"
-
+printf "\nRunning notebook: quick_start_beginner.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_beginner.ipynb --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: quick_start_advanced.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_advanced.ipynb --allow-errors --output-dir $resultsdir
 
 printf "\nGetting metrics ...\n\n"

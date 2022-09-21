@@ -2,7 +2,7 @@
 #
 # Runtime-specific testing for NVIDIA RAPIDS
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 printf "Running Runtime-specific testing for NVIDIA RAPIDS ...\n"
 
@@ -10,15 +10,25 @@ resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
 # This is only a subset of all the .ipynbs in the RAPIDS repo
 
-printf "\nRunning notebooks ...\n\n"
-
+printf "\nRunning notebook: rapids/cuml/arima_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/arima_demo.ipynb             --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: rapids/cuml/forest_inference_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/forest_inference_demo.ipynb  --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: rapids/cuml/kmeans_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/kmeans_demo.ipynb            --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: rapids/cuml/linear_regression_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/linear_regression_demo.ipynb --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: rapids/cuml/nearest_neighbors_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/nearest_neighbors_demo.ipynb --allow-errors --output-dir $resultsdir
+
+printf "\nRunning notebook: rapids/cuml/random_forest_demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/cuml/random_forest_demo.ipynb     --allow-errors --output-dir $resultsdir
 
+printf "\nRunning notebook: rapids/xgboost/XGBoost_Demo.ipynb ...\n\n"
 jupyter nbconvert --to notebook --execute /notebooks/rapids/xgboost/XGBoost_Demo.ipynb        --allow-errors --output-dir $resultsdir
 
 printf "\nGetting metrics ...\n\n"

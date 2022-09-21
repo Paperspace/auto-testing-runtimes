@@ -2,13 +2,13 @@
 #
 # Runtime-specific testing for PyTorch 1.12
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 printf "Running Runtime-specific testing for PyTorch 1.12 ...\n"
 
 resultsdir=/notebooks/test-updated-runtimes/auto_testing_results
 
-printf "\nRunning notebook ...\n\n"
+printf "\nRunning notebook: quick_start_pytorch.ipynb ...\n\n"
 
 jupyter nbconvert --to notebook --execute /notebooks/quick_start_pytorch.ipynb --allow-errors --output-dir $resultsdir
 

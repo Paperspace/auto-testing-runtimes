@@ -2,7 +2,7 @@
 #
 # Runtime-specific testing for Paperspace + Fast.AI
 #
-# Last updated: Sep 20th 2022
+# Last updated: Sep 21st 2022
 
 printf "Running Runtime-specific testing for Paperspace + Fast.AI ...\n"
 
@@ -13,9 +13,9 @@ printf "\nConfirm datasets in shared storage ...\n\n"
 
 python -c 'from fastai.vision.all import *; path = untar_data(URLs.PETS); print(path)'
 
-printf "\nRunning notebook ...\n\n"
+printf "\nRunning notebook: 01_intro.ipynb (02-20 not run) ...\n\n"
 
-jupyter nbconvert --to notebook --execute /notebooks/01_intro.ipynb          --allow-errors --output-dir $resultsdir
+jupyter nbconvert --to notebook --execute /notebooks/01_intro.ipynb --allow-errors --output-dir $resultsdir
 
 printf "\nGetting metrics ...\n\n"
 
