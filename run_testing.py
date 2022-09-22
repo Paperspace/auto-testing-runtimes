@@ -59,4 +59,4 @@ try_import('cv2') # opencv-python
 try_import('jax') # JAX
 try_import('gradient') # Gradient will fail on partner containers that don't have it
 
-print('\n' + 'Python generic testing done')
+print('\n' + 'Python generic testing is done')
