@@ -6,7 +6,7 @@ The aim here is to make testing the runtimes+machines tractable rather than engi
 - Machines only on particular subscriptions such as Free-GPU are not yet tested.
 - Include notebook rerun on test and rerun+kernel restart
 - More commands and tests: there are more things that can be tested, e.g., `nvidia-smi -q`, `locate cuda`, so additions to the scripts here can be ongoing.
-- Notebooks that require the user to take some manual action first such as mounting a Gradient Dataset won't work, but these are minority.
+- Notebooks that require the user to take some manual action first such as mounting a Gradient Dataset won't work, but these are a minority.
 - `nbconvert` can pick up whether or not a notebook errored, meaning notebooks that didn't error wouldn't have to be inspected if we trust they are OK. Ones with errors would still need to be looked at.
 - Better framework: CLI YAML options file (`--optionsFile`), Workflows, or Python may improve upon the master-shell-script setup here.
 - Nice-to-have would be to create one Notebook for each runtime and run it for all machines. This would avoid creating a large number of Notebooks. But using gradient notebooks create, stop, and start same ID with different machine still creates a new one each time, leaving just as many.
