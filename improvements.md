@@ -4,7 +4,6 @@ The aim here is to make testing the runtimes+machines tractable rather than engi
 
 - Multi-GPU machines and CPU machines are not yet tested.
 - Machines only on particular subscriptions such as Free-GPU are not yet tested.
-- `gradient notebooks metrics get` would add information about GPU usage, i.e., sanity-check it is not zero.
 - Include notebook rerun on test and rerun+kernel restart
 - More commands and tests: there are more things that can be tested, e.g., `nvidia-smi -q`, `locate cuda`, so additions to the scripts here can be ongoing.
 - Notebooks that require the user to take some manual action first such as mounting a Gradient Dataset won't work, but these are minority.
