@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Sep 21st 2022
+# Last updated: Oct 18th 2022
 
 
 # What this script does
@@ -316,7 +316,7 @@ fi
 if [ "$runtime" = "NVIDIA RAPIDS" ]; then
     
   machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
-  container="rapidsai/rapidsai:22.06-cuda11.0-runtime-ubuntu18.04-py3.8"
+  container="rapidsai/rapidsai:22.10-cuda11.2-runtime-ubuntu20.04-py3.9"
   workspace="https://github.com/gradient-ai/RAPIDS.git"
   shortname="rapids"
   jupytercmd="PIP_DISABLE_PIP_VERSION_CHECK=1 && \
