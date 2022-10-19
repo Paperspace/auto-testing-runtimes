@@ -1,5 +1,7 @@
 ## Improvements
 
+Last updated: Oct 19th 2022
+
 The aim here is to make testing the runtimes+machines tractable rather than engineer in the best possible way. Nevertheless, there are various improvements we can add over time. Listed roughly in priority order.
 
 - Multi-GPU machines and CPU machines are not yet tested.
@@ -13,6 +15,7 @@ The aim here is to make testing the runtimes+machines tractable rather than engi
 - PDF output also works and could be saved to a remote location without the need to access the Notebook to inspect the results. But it requires a slow TeXLive install [1], and our Notebooks can be viewed offline.
 - Notebooks as `.py`: Currently this uses `nbconvert` to run each `.ipynb` on the Gradient Notebook as a notebook, meaning that the output has to be manually inspected in the notebook view if there are errors. `nbconvert` and `jupytext` can convert `.ipynb`s into `.py`s which then gives us the usual ability to log a `.py`'s output. But this introduces a conversion step that may have errors a user wouldn't see when running the `.ipynb`, and we want to ensure that running our `.ipynb`s is working for users. Also some code in `.ipynb` doesn't work in `.py`, e.g., line and cell magics. We could require our recommended content to be convertible to `.py`, but this might be restrictive.
 - Papermill & Forego might improve the setting up of commands to run when the Notebook is started, e.g., a notebook can be executed with arguments such as a required API key.
+- Auto-testing doesn't pick up issues from rerunning a notebook without restarting the kernel, because the kernel is in effect restarted because each notebook is run separately with its own `nbconvert` command. An example is a GPU going out of memory if the user tries to rerun it and didn't reset the kernel to clear the memory allocation. This is an edge case.
 
 These improvements could also be moved to issues (label as enhancements) for this repo.
 
