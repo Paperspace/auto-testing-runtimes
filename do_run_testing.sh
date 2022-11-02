@@ -4,7 +4,7 @@
 #
 #./do_run_testing.sh [-c "<clusterId>" -w "<workspaceRef>"] "<runtime>" "<projectId>"
 #
-# Last updated: Oct 18th 2022
+# Last updated: Nov 02nd 2022
 
 
 # What this script does
@@ -41,7 +41,7 @@
 # This could be expressed as a support matrix, but currently we simply loop on the compatible combinations within each runtime
 
 # CPU: C5, C7
-# GPU: P4000, RTX4000, RTX5000, P5000, P6000, A4000, V100, V100-32G, A5000, A6000, A100, A100-80G
+# GPU: P4000, RTX4000, P5000, P6000, A4000, V100, V100-32G, A5000, A6000, A100, A100-80G
 # Multi-GPU: A4000x2, V100-32Gx2, V100-32Gx4, A5000x2, A6000x2, A6000x4, A100x2
 # Free: Free CPU (C4), Free GPU+ (M4000), Free P4000, Free RTX4000, Free P5000, Free RTX5000, Free A4000, Free A5000, Free A6000, Free A100-80G
 # IPU: Free-IPU-POD16
@@ -168,7 +168,7 @@ run_on_machines () {
 
 if [ "$runtime" = "PyTorch 1.12" ]; then
 
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/gradient-ai/PyTorch"
   shortname="pt112"
@@ -188,7 +188,7 @@ fi
 
 if [ "$runtime" = "TensorFlow 2.9.1" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/gradient-ai/TensorFlow"
   shortname="tf29" 
@@ -211,7 +211,7 @@ fi
 
 if [ "$runtime" = "Paperspace + Fast.AI" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container="paperspace/fastai:2.0-fastbook-2022-06-29"
   workspace="https://github.com/fastai/fastbook.git"
   shortname="fastai"
@@ -228,7 +228,7 @@ fi
 
 if [ "$runtime" = "DALL-E Mini" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/gradient-ai/dalle-mini"
   shortname="dalle"
@@ -248,7 +248,7 @@ fi
 
 if [ "$runtime" = "Transformers + NLP" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/huggingface/transformers.git"
   shortname="tnlp"
@@ -271,7 +271,7 @@ fi
 
 if [ "$runtime" = "Start from Scratch" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   runningbase="Yes" # No workspace; set this so workspace is not added in run_on_machines()
   shortname="sfs"
@@ -293,7 +293,7 @@ fi
 
 if [ "$runtime" = "ClipIt-PixelDraw" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container="paperspace/clip-pixeldraw:jupyter"
   workspace="https://github.com/gradient-ai/ClipIt-PixelDraw"
   shortname="clipit"
@@ -315,7 +315,7 @@ fi
 
 if [ "$runtime" = "NVIDIA RAPIDS" ]; then
     
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container="rapidsai/rapidsai:22.10-cuda11.2-runtime-ubuntu20.04-py3.9"
   workspace="https://github.com/gradient-ai/RAPIDS.git"
   shortname="rapids"
@@ -412,7 +412,7 @@ fi
 
 if [ "$runtime" = "Stable Diffusion" ]; then
 
-  machines=("P4000" "RTX4000" "RTX5000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
+  machines=("P4000" "RTX4000" "P5000" "P6000" "A4000" "V100" "V100-32G" "A5000" "A6000" "A100" "A100-80G")
   container=$base
   workspace="https://github.com/gradient-ai/stable-diffusion"
   shortname="stable"
